@@ -3,7 +3,7 @@
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
 This project built using open-source technologies to simulate real-world insurance risk analytics pipelines.
 
@@ -45,7 +45,7 @@ The objective is to convert messy raw exposure datasets into meaningful insuranc
 
 ---
 
-## 🧠 Industry Framework Used – Four Box CAT Model
+##  Industry Framework Used – Four Box CAT Model
 
 This platform replicates the industry-standard catastrophe modeling architecture:
 
@@ -87,7 +87,7 @@ CAT Bond Simulation
 
 ---
 
-## 🏗 Data Engineering Layer (AWS)
+## Data Engineering Layer (AWS)
 
 ### 🔹 S3 Lakehouse Architecture
 
@@ -202,7 +202,7 @@ Stored as:
 
 ---
 
-## 📊 Portfolio Risk Metrics
+## Portfolio Risk Metrics
 
 ### 🔹 Average Annual Loss (AAL)
 
