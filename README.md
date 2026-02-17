@@ -1,153 +1,181 @@
-# End-to-End-Catastrophe-Risk-Modelling-Live-Simulation
+# 🌪️ End-to-End Catastrophe Risk Modelling Engine
+
+A probabilistic **Catastrophe Risk Modelling System** that replicates the core workflow of industry-leading tools such as **Moody’s RMS** using open-source technologies.
+
 This project demonstrates how insurers estimate financial losses from natural disasters such as hurricanes and cyclones using stochastic modelling techniques.
 
+---
 
-📌 Project Objective
+## 📌 Project Objective
 
 Insurance companies face one critical question:
 
-“If a major disaster occurs tomorrow, how much financial loss will we suffer?”
+> *“If a major disaster occurs tomorrow, how much financial loss will we suffer?”*
 
 Traditional historical data cannot predict future catastrophic losses accurately.
 
 This project solves that problem by:
 
-Simulating thousands of possible future disaster scenarios
+* Simulating thousands of possible future disaster scenarios
+* Estimating physical damage to insured assets
+* Converting damage into financial loss
+* Calculating portfolio risk metrics such as:
 
-Estimating physical damage to insured assets
+  * Average Annual Loss (AAL)
+  * Exceedance Probability (EP) Curve
+  * Probable Maximum Loss (PML)
 
-Converting damage into financial loss
+---
 
-Calculating portfolio risk metrics such as:
+## 🧠 Catastrophe Modelling Workflow
 
-Average Annual Loss (AAL)
+This project follows the industry-standard **Four-Box CAT Model Architecture**:
 
-Exceedance Probability (EP) Curve
+---
 
-Probable Maximum Loss (PML)
-
-🧠 Catastrophe Modelling Workflow
-
-This project follows the industry-standard Four-Box CAT Model Architecture:
-
-1️⃣ Exposure Module
+### 1️⃣ Exposure Module
 
 Identifies insured assets such as:
 
-Building Location
+* Building Location
+* Construction Type
+* Year Built
+* Total Insured Value (TIV)
+* Policy Terms (Deductible, Limit, Coinsurance)
 
-Construction Type
+---
 
-Year Built
-
-Total Insured Value (TIV)
-
-Policy Terms (Deductible, Limit, Coinsurance)
-
-2️⃣ Hazard Module
+### 2️⃣ Hazard Module
 
 Simulates stochastic hurricane events and generates:
 
-Wind speed intensity for each building
+* Wind speed intensity for each building
+* Spatial variability using probability distributions
 
-Spatial variability using probability distributions
+---
 
-3️⃣ Vulnerability Module
+### 3️⃣ Vulnerability Module
 
 Calculates physical damage using:
 
-Mean Damage Ratio (MDR)
+**Mean Damage Ratio (MDR)**
 
 Which represents:
 
+```
 0 → No Damage
 1 → Total Destruction
+```
 
 Damage depends on:
 
-Construction Type
+* Construction Type
+* Hazard Intensity
+* Year Built (modern building code credit)
 
-Hazard Intensity
+---
 
-Year Built (modern building code credit)
-
-4️⃣ Financial Module
+### 4️⃣ Financial Module
 
 Converts damage into monetary loss using insurance policy terms:
 
-Ground Up Loss (GU)
-
-Deductible Application
-
-Policy Limit
-
-Coinsurance
+* Ground Up Loss (GU)
+* Deductible Application
+* Policy Limit
+* Coinsurance
 
 Final insurer payout is calculated as:
 
+```
 Gross Loss
-📊 Risk Metrics Generated
-🔹 Average Annual Loss (AAL)
+```
+
+---
+
+## 📊 Risk Metrics Generated
+
+### 🔹 Average Annual Loss (AAL)
 
 Expected average loss per year from all simulated disasters.
 
-🔹 Exceedance Probability (EP) Curve
+---
+
+### 🔹 Exceedance Probability (EP) Curve
 
 Shows probability that loss will exceed a given threshold.
 
 Example:
 
-There is a 1% probability (1-in-100 year event) that losses will exceed $850M.
+> There is a 1% probability (1-in-100 year event) that losses will exceed $850M.
 
-🔹 Probable Maximum Loss (PML)
+---
+
+### 🔹 Probable Maximum Loss (PML)
 
 Worst-case financial loss at selected return periods such as:
 
-10-Year PML
+* 10-Year PML
+* 50-Year PML
+* 100-Year PML
+* 500-Year PML
 
-50-Year PML
+---
 
-100-Year PML
+## ⚙️ Technologies Used
 
-500-Year PML
+* Python
+* NumPy
+* Pandas
+* PySpark (ETL)
+* AWS Glue (Exposure Data Engineering)
 
-⚙️ Technologies Used
+---
 
-Python
+## 🚀 How to Run the Project
 
-NumPy
+### Step 1: Install Dependencies
 
-Pandas
-
-PySpark (ETL)
-
-AWS Glue (Exposure Data Engineering)
-
-🚀 How to Run the Project
-Step 1: Install Dependencies
+```
 pip install pandas numpy
-Step 2: Run Modelling Engine
+```
+
+---
+
+### Step 2: Run Modelling Engine
+
+```
 python modelling_engine.py
-📁 Project Structure
+```
+
+---
+
+## 📁 Project Structure
+
+```
 Catastrophe-Risk-Model
 │
 ├── edm_local_copy.parquet
 ├── modelling_engine.py
 └── README.md
-🧑‍💼 Resume Description
+```
 
-Built an end-to-end stochastic catastrophe risk model replicating Moody’s RMS workflow using Python and AWS Glue to estimate portfolio-level financial losses under simulated disaster scenarios.
+---
 
-📈 Future Enhancements
+## 🧑‍💼 Resume Description
 
-Multi-Peril Modelling
+> Built an end-to-end stochastic catastrophe risk model replicating Moody’s RMS workflow using Python and AWS Glue to estimate portfolio-level financial losses under simulated disaster scenarios.
 
-Reinsurance Layer Analysis
+---
 
-Cat Bond Simulation
+## 📈 Future Enhancements
 
-Climate Scenario Modelling
+* Multi-Peril Modelling
+* Reinsurance Layer Analysis
+* Cat Bond Simulation
+* Climate Scenario Modelling
 
-📜 License
+---
+
+## 📜 License
 
 This project is for educational and portfolio purposes.
