@@ -1,12 +1,11 @@
 # 📌 End-to-End Catastrophe Risk Modelling Platform
 
-### *(Moody’s RMS Workflow Replica using AWS + PySpark + Python)*
 
 ---
 
 ## 🚀 Project Overview
 
-This project is an enterprise-grade replication of the **Moody’s RMS Catastrophe Risk Modeling Workflow**, built using open-source technologies to simulate real-world insurance risk analytics pipelines.
+This project built using open-source technologies to simulate real-world insurance risk analytics pipelines.
 
 Catastrophe (CAT) modeling is widely used by:
 
@@ -59,7 +58,7 @@ This platform replicates the industry-standard catastrophe modeling architecture
 
 ---
 
-## ☁️ System Architecture
+## System Architecture
 
 ```
 Raw Exposure Data (CSV)
@@ -132,9 +131,9 @@ in Parquet format for optimized analytics performance.
 
 ---
 
-## ⚙️ Modeling Engine (Python)
+##  Modeling Engine (Python)
 
-### 📍 Module 1 – Hazard Engine
+### Module 1 – Hazard Engine
 
 * Generates Stochastic Event Set (SES)
 * Simulates Hurricane Events
@@ -149,7 +148,7 @@ Produces:
 
 ---
 
-### 📍 Module 2 – Vulnerability Engine
+### Module 2 – Vulnerability Engine
 
 Converts:
 
@@ -173,23 +172,23 @@ Based on:
 Post-2000 Buildings:
 
 ✔ Receive Vulnerability Credit
-✔ Reduced Structural Damage
+✔ Reduced Structural Damage by 20%
 
 ---
 
-### 📍 Module 3 – Financial Engine
+### Module 3 – Financial Engine
 
 Loss Waterfall Applied:
 
-1️⃣ Ground Up Loss (GU)
+1️ Ground Up Loss (GU)
 
 ```
 GU Loss = TIV × MDR
 ```
 
-2️⃣ Deductible Applied
-3️⃣ Policy Limit Applied
-4️⃣ Coinsurance Applied
+2️ Deductible Applied
+3️ Policy Limit Applied
+4️ Coinsurance Applied
 
 Final Output:
 
@@ -231,7 +230,7 @@ Example Interpretation:
 
 ---
 
-## 💰 Advanced Risk Transfer – CAT Bond Simulation
+## Advanced Risk Transfer – CAT Bond Simulation
 
 Modeled:
 
@@ -256,55 +255,8 @@ Used for:
 
 ---
 
-## 🧪 Business Simulation – Portfolio Roll-Up
 
-Simulated Renewal Season Scenario:
+## References
 
-New Account Added:
-
-```
-ACC_FL_CONDO (Miami Portfolio)
-```
-
-| Metric          | Before | After |
-| --------------- | ------ | ----- |
-| 100-Year PML    | $85M   | $92M  |
-| Marginal Impact | +$7M   |       |
-
-Business Insight:
-
-➡ Highly correlated peak catastrophe risk
-➡ Requires capital adjustment
-➡ May need facultative reinsurance
-
----
-
-## 🛠 Tech Stack
-
-* AWS S3
-* AWS Glue
-* PySpark
-* Python
-* Pandas
-* NumPy
-* SciPy
-* Matplotlib
-* VS Code
-
----
-
-## 📈 Resume Highlights
-
-* Architected AWS Lakehouse for Insurance Risk Modeling
-* Built EDM using Glue + PySpark
-* Implemented Hazard–Vulnerability–Financial CAT Model
-* Calculated AAL & EP Curve for Portfolio Risk
-* Simulated CAT Bond Expected Loss
-* Performed Marginal Impact Analysis for Underwriting
-
----
-
-## 📚 References
-
-* Moody’s RMS Workflow
-* CAT Modeling Framework
+* Oasis LMF Workflow (Open Source)
+[* [CAT Modeling Framework](https://developer.rms.com/risk-modeler/docs/cat-modeling)](https://developer.rms.com/platform/docs/exposure-resources)
