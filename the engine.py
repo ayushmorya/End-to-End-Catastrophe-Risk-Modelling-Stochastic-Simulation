@@ -5,7 +5,7 @@ import numpy as np
 edm = pd.read_parquet("C:\\Users\\ayush\\OneDrive\\Desktop\\part 2\\edm_local_copy.parquet")
 
 
-# Define Stochastic Hurricane Event Catalog
+# this is the stochastic hurricane event
 catalog_data = {
     'event_id': [1,2,3,4,5,6,7,8,9,10],
     'description': [
@@ -20,7 +20,7 @@ catalog_data = {
 
 catalog_df = pd.DataFrame(catalog_data)
 
-# Hazard Footprint Simulation Function
+# hazard tootprint simulation function
 def simulate_hazard_footprint(locations, events):
     """
     This function answers:
@@ -55,7 +55,7 @@ def simulate_hazard_footprint(locations, events):
 
     return pd.concat(footprints, ignore_index=True)
 
-# Generate Hazard Intensity Table
+
 hazard_df = simulate_hazard_footprint(edm, catalog_df)
 
 print(hazard_df.head())
@@ -74,7 +74,6 @@ def get_vulnerability_mdr(row):
     
     mdr = 0.0
     
-    # Base Vulnerability Curves (Simplified Piecewise Linear for demonstration)
     if const_code == 1: # Wood is weak
         if intensity > 60: #damage starts after 60mph
             mdr = min(1.0, (intensity - 60) / 100) # Reaches 100% at 160mph
@@ -85,22 +84,21 @@ def get_vulnerability_mdr(row):
         if intensity > 75:
             mdr = min(0.9, (intensity - 75) / 120)
             
-    # Apply Secondary Modifier: Year Built Credit
-    # Assume modern codes (post-2000) reduce damage by 20% because post 2000 building are way more stronger
+    # assume modern codes (post-2000) reduce damage by 20% because post 2000 building are way more stronger
     if year_built > 2000:
         mdr = mdr * 0.80 #20% less damage
         
     return mdr
 
-# Merge Hazard with Exposure to get Attributes
+# merge hazard with exposure to get attributes
 full_exposure_view = pd.merge(hazard_df, edm, on='location_id')
 
-# Calculate MDR
+# calculate MDR
 full_exposure_view['mdr'] = full_exposure_view.apply(get_vulnerability_mdr, axis=1)
 
 
 
-# Module 3: The Financial Engine (Loss Calculation)
+# Module 3: the financial engine (Loss Calculation)
 def calculate_financial_loss(row):
     tiv = row['tiv']
     mdr = row['mdr']
@@ -116,7 +114,7 @@ def calculate_financial_loss(row):
     deductible_amount = tiv * deductible_pct
     loss_net_deductible = max(0, gu_loss - deductible_amount)
     
-    # 3. Apply Limit
+    # 3. limit
     # Insurance will not pay more than the policy limit
     loss_net_limit = min(loss_net_deductible, limit)
     
@@ -128,10 +126,11 @@ def calculate_financial_loss(row):
 
 # Execute Financial Module
 financial_results = full_exposure_view.apply(calculate_financial_loss, axis=1)
+
 # Bind results back to the main dataframe
 full_results = pd.concat([full_exposure_view, financial_results], axis=1)
 
-#----------------------------------------------------------
+
 #Probabilistic Metrics: AAL and EP Curves
 #Average Annual Loss (AAL)
 
@@ -153,7 +152,6 @@ portfolio_aal = portfolio_elt['aal_contribution'].sum()
 print(f"Portfolio Gross AAL: ${portfolio_aal:,.2f}")
 
 
-#----------------------------------------------------------
 # 4.2 Exceedance Probability (EP) Curve
 # OEP (Occurrence Exceedance Probability): Probability of at least one event exceeding loss $x$.
 # AEP (Aggregate Exceedance Probability): Probability of the sum of losses in a year exceeding loss $x$.
@@ -219,3 +217,4 @@ print(ep_curve_df[['description', 'gross_loss', 'return_period']])
 # )
 
 # print("Files Exported Successfully for Power BI Dashboard")
+
