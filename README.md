@@ -1,12 +1,12 @@
 # 🌪️ End-to-End Catastrophe Risk Modelling Engine
 
-A probabilistic **Catastrophe Risk Modelling System** that replicates the core workflow of industry-leading tools such as **Moody’s RMS** using open-source technologies.
+A probabilistic **Catastrophe Risk Modelling System** that replicates the core workflow using open source technologies.
 
 This project demonstrates how insurers estimate financial losses from natural disasters such as hurricanes and cyclones using stochastic modelling techniques.
 
 ---
 
-## 📌 Project Objective
+## Project Objective
 
 Insurance companies face one critical question:
 
@@ -27,13 +27,13 @@ This project solves that problem by:
 
 ---
 
-## 🧠 Catastrophe Modelling Workflow
+##  Catastrophe Modelling Workflow
 
 This project follows the industry-standard **Four-Box CAT Model Architecture**:
 
 ---
 
-### 1️⃣ Exposure Module
+### 1️ Exposure Module
 
 Identifies insured assets such as:
 
@@ -45,7 +45,7 @@ Identifies insured assets such as:
 
 ---
 
-### 2️⃣ Hazard Module
+### 2️ Hazard Module
 
 Simulates stochastic hurricane events and generates:
 
@@ -54,7 +54,7 @@ Simulates stochastic hurricane events and generates:
 
 ---
 
-### 3️⃣ Vulnerability Module
+### 3️ Vulnerability Module
 
 Calculates physical damage using:
 
@@ -75,7 +75,7 @@ Damage depends on:
 
 ---
 
-### 4️⃣ Financial Module
+### 4️ Financial Module
 
 Converts damage into monetary loss using insurance policy terms:
 
@@ -131,7 +131,7 @@ Worst-case financial loss at selected return periods such as:
 
 ---
 
-## 🚀 How to Run the Project
+##  How to Run the Project
 
 ### Step 1: Install Dependencies
 
@@ -161,13 +161,8 @@ Catastrophe-Risk-Model
 
 ---
 
-## 🧑‍💼 Resume Description
 
-> Built an end-to-end stochastic catastrophe risk model replicating Moody’s RMS workflow using Python and AWS Glue to estimate portfolio-level financial losses under simulated disaster scenarios.
-
----
-
-## 📈 Future Enhancements
+##  Future Enhancements
 
 * Multi-Peril Modelling
 * Reinsurance Layer Analysis
@@ -176,6 +171,6 @@ Catastrophe-Risk-Model
 
 ---
 
-## 📜 License
+##  License
 
 This project is for educational and portfolio purposes.
