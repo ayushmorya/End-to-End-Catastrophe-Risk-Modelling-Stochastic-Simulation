@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Load EDM parquet Output
-edm = pd.read_parquet("C:\\Users\\ayush\\OneDrive\\Desktop\\part 2\\edm_local_copy.parquet")
+edm = pd.read_parquet("edm path here")
 
 
 # this is the stochastic hurricane event
@@ -217,4 +217,5 @@ print(ep_curve_df[['description', 'gross_loss', 'return_period']])
 # )
 
 # print("Files Exported Successfully for Power BI Dashboard")
+
 
