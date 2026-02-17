@@ -1,176 +1,296 @@
-# 🌪️ End-to-End Catastrophe Risk Modelling Engine
+📌 End-to-End Catastrophe Risk Modelling Platform
+Project Overview
 
-A probabilistic **Catastrophe Risk Modelling System** that replicates the core workflow using open source technologies.
+This project is an enterprise-grade replication of the Moody’s RMS Catastrophe Risk Modeling Workflow, built using open-source technologies to simulate real-world insurance risk analytics pipelines.
 
-This project demonstrates how insurers estimate financial losses from natural disasters such as hurricanes and cyclones using stochastic modelling techniques.
+Catastrophe (CAT) modeling is widely used by:
 
----
+Insurance Companies
 
-## Project Objective
+Reinsurance Firms
 
-Insurance companies face one critical question:
+Risk Engineering Teams
 
-> *“If a major disaster occurs tomorrow, how much financial loss will we suffer?”*
+Capital Market Investors (ILS / CAT Bonds)
 
-Traditional historical data cannot predict future catastrophic losses accurately.
+to estimate financial losses caused by natural disasters like:
 
-This project solves that problem by:
+🌪 Hurricanes
+🌍 Earthquakes
+🌊 Floods
+🔥 Wildfires
 
-* Simulating thousands of possible future disaster scenarios
-* Estimating physical damage to insured assets
-* Converting damage into financial loss
-* Calculating portfolio risk metrics such as:
+This project demonstrates the complete Exposure → Hazard → Vulnerability → Financial Loss modeling pipeline using:
 
-  * Average Annual Loss (AAL)
-  * Exceedance Probability (EP) Curve
-  * Probable Maximum Loss (PML)
+AWS Glue (PySpark ETL)
 
----
+Amazon S3 Data Lake
 
-##  Catastrophe Modelling Workflow
+Python Stochastic Simulation Engine
 
-This project follows the industry-standard **Four-Box CAT Model Architecture**:
+Portfolio Loss Modeling
 
----
+AAL & EP Curve Calculation
 
-### 1️ Exposure Module
+Catastrophe Bond Risk Transfer Simulation
 
-Identifies insured assets such as:
+The objective is to convert messy raw exposure datasets into meaningful insurance risk metrics such as:
 
-* Building Location
-* Construction Type
-* Year Built
-* Total Insured Value (TIV)
-* Policy Terms (Deductible, Limit, Coinsurance)
+✔ Average Annual Loss (AAL)
+✔ Occurrence Exceedance Probability (OEP)
+✔ Probable Maximum Loss (PML)
+✔ Catastrophe Bond Expected Loss (EL)
 
----
+Industry Framework Used – The Four Box Model
 
-### 2️ Hazard Module
+This platform replicates the industry-standard CAT modeling architecture 
 
-Simulates stochastic hurricane events and generates:
+Catastrophe Modeling Project Wo…
 
-* Wind speed intensity for each building
-* Spatial variability using probability distributions
+:
 
----
+Module	Description	Output
+Hazard	Simulates physical disaster intensity	Wind Speed / Ground Motion
+Exposure	Assets exposed to catastrophe risk	EDM Schema
+Vulnerability	Damage estimation from hazard	Mean Damage Ratio (MDR)
+Financial	Policy loss calculation	GU Loss / Gross Loss
+☁️ System Architecture
+Raw Exposure Data (CSV)
+        ↓
+Amazon S3 (Data Lake)
+        ↓
+AWS Glue ETL (PySpark)
+        ↓
+Exposure Data Module (EDM)
+        ↓
+Local Modeling Engine (Python)
+        ↓
+Hazard Simulation
+        ↓
+Damage Estimation
+        ↓
+Policy Financial Modeling
+        ↓
+Event Loss Table (ELT)
+        ↓
+Portfolio Risk Metrics
+(AAL, EP Curve, PML)
+        ↓
+CAT Bond Simulation
 
-### 3️ Vulnerability Module
+🏗 Data Engineering Layer (AWS)
+🔹 S3 Lakehouse Architecture
+Layer	Description
+Bronze	Raw Exposure Data
+Silver	Cleaned Data
+Gold	EDM Standardized Data
+🔹 Raw Inputs
 
-Calculates physical damage using:
+location_raw.csv
 
-**Mean Damage Ratio (MDR)**
+policy_raw.csv
 
-Which represents:
+🔹 ETL using AWS Glue + PySpark
 
-```
-0 → No Damage
-1 → Total Destruction
-```
+Performed:
 
-Damage depends on:
+Schema Casting
 
-* Construction Type
-* Hazard Intensity
-* Year Built (modern building code credit)
+Data Quality Validation
 
----
+Geolocation Checks
 
-### 4️ Financial Module
+TIV Cleansing
 
-Converts damage into monetary loss using insurance policy terms:
+Construction Code Mapping
 
-* Ground Up Loss (GU)
-* Deductible Application
-* Policy Limit
-* Coinsurance
+Occupancy Code Mapping
 
-Final insurer payout is calculated as:
+Financial Policy Join
 
-```
-Gross Loss
-```
+Mapped to RMS-standardized:
 
----
+Construction Codes
 
-## 📊 Risk Metrics Generated
+Occupancy Codes
 
-### 🔹 Average Annual Loss (AAL)
+Policy Deductibles
 
-Expected average loss per year from all simulated disasters.
+Policy Limits
 
----
+Final EDM stored in:
 
-### 🔹 Exceedance Probability (EP) Curve
+s3://cat-mod-resume-project/curated/edm/
 
-Shows probability that loss will exceed a given threshold.
 
-Example:
+in Parquet Format for optimized analytics performance.
 
-> There is a 1% probability (1-in-100 year event) that losses will exceed $850M.
+⚙️ Modeling Engine (Python)
+📍 Module 1 – Hazard Engine
 
----
+Generates Stochastic Event Set (SES)
 
-### 🔹 Probable Maximum Loss (PML)
+Simulates Hurricane Events
 
-Worst-case financial loss at selected return periods such as:
+Uses probabilistic event frequency
 
-* 10-Year PML
-* 50-Year PML
-* 100-Year PML
-* 500-Year PML
+Wind intensity simulated using:
 
----
+Gamma / Normal Distribution
 
-## ⚙️ Technologies Used
 
-* Python
-* NumPy
-* Pandas
-* PySpark (ETL)
-* AWS Glue (Exposure Data Engineering)
+Produces:
 
----
+Hazard Intensity per Location
 
-##  How to Run the Project
+📍 Module 2 – Vulnerability Engine
 
-### Step 1: Install Dependencies
+Converts Hazard Intensity → Physical Damage
 
-```
-pip install pandas numpy
-```
+Damage Metric:
 
----
+Mean Damage Ratio (MDR)
 
-### Step 2: Run Modelling Engine
 
-```
-python modelling_engine.py
-```
+Based on:
 
----
+Construction Type
 
-## 📁 Project Structure
+Occupancy
 
-```
-Catastrophe-Risk-Model
-│
-├── edm_local_copy.parquet
-├── modelling_engine.py
-└── README.md
-```
+Hazard Intensity
 
----
+Year Built (Secondary Modifier)
 
+Post-2000 Buildings:
 
-##  Future Enhancements
+✔ Receive Vulnerability Credit
+✔ Reduced Structural Damage
 
-* Multi-Peril Modelling
-* Reinsurance Layer Analysis
-* Cat Bond Simulation
-* Climate Scenario Modelling
+📍 Module 3 – Financial Engine
 
----
+Loss Waterfall Applied:
 
-##  License
+1️⃣ Ground Up Loss (GU)
 
-This project is for educational and portfolio purposes.
+GU Loss = TIV × MDR
+
+
+2️⃣ Deductible Applied
+
+3️⃣ Policy Limit Applied
+
+4️⃣ Coinsurance Applied
+
+Final Output:
+
+Gross Loss (GR)
+
+
+Stored as:
+
+Event Loss Table (ELT)
+
+📊 Portfolio Risk Metrics
+🔹 Average Annual Loss (AAL)
+
+Expected yearly portfolio loss:
+
+AAL = Σ(Event Loss × Annual Rate)
+
+🔹 EP Curve (Occurrence Exceedance Probability)
+
+Shows probability that loss exceeds threshold L:
+
+Used for:
+
+✔ Capital Planning
+✔ Reinsurance Purchase
+✔ Risk Appetite Decisions
+
+Example Interpretation:
+
+There is a 1% probability that the annual portfolio loss will exceed the 100-Year PML.
+
+💰 Advanced Risk Transfer – CAT Bond Simulation
+
+Modeled:
+
+Indemnity Trigger CAT Bond
+
+Parameter	Value
+Attachment	$100M
+Exhaustion	$200M
+Principal	$100M
+
+Calculated:
+
+✔ Bond Payout
+✔ Expected Loss (EL)
+
+Used for:
+
+ILS Pricing
+
+Risk Spread Calculation
+
+Capital Market Risk Transfer
+
+🧪 Business Simulation – Portfolio Roll-Up
+
+Simulated Renewal Season Scenario:
+
+New Account Added:
+
+ACC_FL_CONDO (Miami Portfolio)
+
+
+Impact:
+
+Metric	Before	After
+100-Year PML	$85M	$92M
+Marginal Impact	+$7M	
+
+Business Insight:
+
+➡ Highly correlated peak catastrophe risk
+➡ Requires capital adjustment
+➡ May need facultative reinsurance
+
+🛠 Tech Stack
+
+AWS S3
+
+AWS Glue
+
+PySpark
+
+Python
+
+Pandas
+
+NumPy
+
+SciPy
+
+Matplotlib
+
+VS Code
+
+📈 Resume Highlights
+
+Architected AWS Lakehouse for Insurance Risk Modeling
+
+Built EDM using Glue + PySpark
+
+Implemented Hazard–Vulnerability–Financial CAT Model
+
+Calculated AAL & EP Curve for Portfolio Risk
+
+Simulated CAT Bond Expected Loss
+
+Performed Marginal Impact Analysis for Underwriting
+
+📚 References
+
+Moody’s RMS Workflow & CAT Modeling Framework
