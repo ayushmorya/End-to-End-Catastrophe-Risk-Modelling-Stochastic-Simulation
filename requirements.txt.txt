@@ -1,0 +1,12 @@
+pandas
+numpy
+scipy
+matplotlib
+plotly
+streamlit
+pyarrow
+pyspark
+
+
+Install at once:
+pip install -r requirements.txt

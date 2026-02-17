@@ -1,0 +1,33 @@
+Transformation Logic
+
+Construction Code Mapping: The raw data 8 uses terms like "Wood", "Masonry", "Steel", and 
+"RCC". We map these to standard Construction Class Codes.
+
+
+● Wood  Code 1 (Frame): Typically wood frame construction, vulnerable to wind 
+(roof uplift) and fire, but relatively resilient to earthquake due to flexibility. 
+● Masonry  RMS Code 2 (Joisted Masonry): Brick, concrete block, or stone. Rigid and 
+brittle; highly vulnerable to earthquakes (if unreinforced) but moderately resistant to 
+wind.
+
+● Steel  Code 4 (Non-Combustible/Steel): Steel frame with non-combustible 
+walls. High ductility makes it resilient to earthquakes. 
+● RCC  RMS Code 6 (Fire Resistive / Reinforced Concrete): Reinforced concrete 
+frame and floors. The most robust class, offering high resistance to both wind and 
+earthquake forces.
+
+Occupancy Code Mapping: Similarly, we map occupancy_type to RMS Occupancy Codes. 
+These codes determine the vulnerability of the building's contents and potential for business 
+interruption.
+
+● Residential  Code 301 (Single Family Dwelling): Generally smaller structures, 
+wood frame dominance.
+
+● Commercial  Code 311 (General Commercial): Retail, offices.
+
+● Industrial  Code 321 (General Industrial): Manufacturing, high contents value, 
+complex vulnerability.
+
+
+Architectural Note: We export to Parquet. Parquet is a columnar storage format that is 
+highly efficient for the types of aggregate queries used in catastrophe modeling.
