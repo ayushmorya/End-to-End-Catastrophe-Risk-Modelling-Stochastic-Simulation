@@ -124,7 +124,7 @@ Mapped to RMS-standardized:
 Final EDM stored in:
 
 ```
-s3://cat-mod-resume-project/curated/edm/
+s3://cat-mod-project/curated/edm/
 ```
 
 in Parquet format for optimized analytics performance.
